@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameManager gameManager;
+
     // Player movement
     public float moveSpeed = 5f;
     public float sprintSpeed = 10f;
@@ -56,13 +58,11 @@ public class Player : MonoBehaviour
         for (int i = 0; i < metalList.Length; i++) {
             if (Vector3.Distance(transform.position, metalList[i].transform.position) < distanceToNearestMetal) {
                 distanceToNearestMetal = Vector3.Distance(transform.position, metalList[i].transform.position);
-                Debug.Log(distanceToNearestMetal);
             }
         }
 
-        if (distanceToNearestMetal != 0)
+        if (distanceToNearestMetal != 0) {
             metalBeep.pitch = baseDistance / distanceToNearestMetal;
-            //Debug.Log(metalBeep.pitch);
             if (metalBeep.pitch < minBeepPitch) {
                 metalBeep.pitch = minBeepPitch;
                 Debug.Log("lowest pitch");
@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
                 metalBeep.pitch = maxBeepPitch;
                 Debug.Log("highest pitch");
             }
+        }
         else
             metalBeep.pitch = 0;
 
@@ -111,6 +112,7 @@ public class Player : MonoBehaviour
                 Debug.Log(hit.collider);
                 if (hit.collider.tag == "Pickupable" || hit.collider.tag == "Metal")
                 {
+                    gameManager.AddItem(hit.collider.GetComponent<Item>().itemID);
                     Destroy(hit.collider.gameObject);
                 }
                 //Debug.Log("Did Hit");
