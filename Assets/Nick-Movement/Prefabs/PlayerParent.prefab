@@ -159,7 +159,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2485201631111081145}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a674df33f2b44f14084afc46998e56f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b98afe5330f7cd4686431f3263d1001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
@@ -175,13 +175,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2485201631111081145}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1480d2e89b45e1b48b921e0b3a4c140e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7360b7030ebe7df40bd393e989d0b11c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToNearestMetal: 3.4028235e+38
   baseDistance: 10
   metalList: []
-  metalBeep: {fileID: 1596942063362050278}
+  metalBeep: {fileID: 0}
 --- !u!82 &1596942063362050278
 AudioSource:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ab0dfba0bbe8f1244b0fb72efd1e716e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1ee09c6ccc2aa254daf428027285f3be, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.142
   m_Pitch: 1
