@@ -181,7 +181,7 @@ MonoBehaviour:
   distanceToNearestMetal: 3.4028235e+38
   baseDistance: 10
   metalList: []
-  metalBeep: {fileID: 0}
+  metalBeep: {fileID: 1596942063362050278}
 --- !u!82 &1596942063362050278
 AudioSource:
   m_ObjectHideFlags: 0
