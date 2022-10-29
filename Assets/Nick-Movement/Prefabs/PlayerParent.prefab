@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 40344329506165430}
   m_Layer: 0
   m_Name: PlayerParent
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6661315979326732324}
   - component: {fileID: 5614298268226349310}
   - component: {fileID: 2694398294061733481}
-  - component: {fileID: 1362355614594165389}
+  - component: {fileID: 5508669490967643615}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -148,7 +148,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &1362355614594165389
+--- !u!114 &5508669490967643615
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,11 +157,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2485201631111081145}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fbfe2d4a9cdcd24aa6181c959ec6b3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0db7d410974128046bc9a5ad18ba9337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
   sprintSpeed: 10
+  sensitivityX: 4
+  sensitivityY: 1
 --- !u!1 &2855662474672969703
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +177,7 @@ GameObject:
   - component: {fileID: 4307787739288612713}
   m_Layer: 0
   m_Name: PlayerCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
