@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int[] inventoryList;
+    public List<int> inventoryList;
     public GameObject inventoryUI;
 
     // Start is called before the first frame update
@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
             else
                 InventoryClose();
         }
+    }
+
+    public void AddItem(int itemID) {
+        inventoryList.Add(itemID);
     }
 
     public void InventoryOpen() {
