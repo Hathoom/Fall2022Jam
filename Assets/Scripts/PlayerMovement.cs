@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Camera cam;
 
+    // Pick things up
+    private float pickupRange = 2f;
+
 
 
     // Start is called before the first frame update
@@ -65,16 +68,22 @@ public class PlayerMovement : MonoBehaviour
             // create a Ray
             RaycastHit hit;
 
-            if (Physics.Raycast(camTransform.position, camTransform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+            if (Physics.Raycast(camTransform.position, camTransform.TransformDirection(Vector3.forward), out hit, pickupRange))
             {
-                Debug.DrawRay(camTransform.position, camTransform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+                // If we hit the object, destroy it or pick it up.
+                // Debug.DrawRay(camTransform.position, camTransform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+                
                 Debug.Log(hit.collider);
-                Debug.Log("Did Hit");
+                if (hit.collider.tag == "Pickupable" || hit.collider.tag == "Metal")
+                {
+                    Destroy(hit.collider.gameObject);
+                }
+                //Debug.Log("Did Hit");
             }
             else
             {
-                Debug.DrawRay(camTransform.position, camTransform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
-                Debug.Log("Did not Hit");
+                //Debug.DrawRay(camTransform.position, camTransform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+                //Debug.Log("Did not Hit");
             }
         }
     }
