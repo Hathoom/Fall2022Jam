@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     //public GameManager gameManager;
 
     // Rotation/Camera Rotation
+    //get camera transform
+
     private Transform camTransform;
 
     private float currentX = 0f;
@@ -26,11 +28,12 @@ public class PlayerMovement : MonoBehaviour
     private Camera cam;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody>();
-        cam = Camera.main;
+        cam = gameObject.GetComponentInChildren<Camera>();
         camTransform = transform;
     }
 
@@ -51,9 +54,28 @@ public class PlayerMovement : MonoBehaviour
         currentY += Input.GetAxis("CameraVertical");
 
         currentX += Input.GetAxis("Mouse X") * sensitivityX;
-        currentY += Input.GetAxis("Mouse Y") * sensitivityY;
+        currentY += Input.GetAxis("Mouse Y") * sensitivityY * -1;
 
         Quaternion cameraRotation = Quaternion.Euler(currentY, currentX, 0);
         camTransform.rotation = cameraRotation;
+
+        //Interact
+        if (Input.GetAxis("Interact") > 0)
+        {
+            // create a Ray
+            RaycastHit hit;
+
+            if (Physics.Raycast(camTransform.position, camTransform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+            {
+                Debug.DrawRay(camTransform.position, camTransform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+                Debug.Log(hit.collider);
+                Debug.Log("Did Hit");
+            }
+            else
+            {
+                Debug.DrawRay(camTransform.position, camTransform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+                Debug.Log("Did not Hit");
+            }
+        }
     }
 }
