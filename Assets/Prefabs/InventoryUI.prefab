@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  itemList:
+  itemTxtList:
   - {fileID: 2336195386119761424}
   - {fileID: 2336195385542299722}
   - {fileID: 2336195385969991355}
