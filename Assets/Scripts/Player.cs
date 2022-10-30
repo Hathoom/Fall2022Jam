@@ -53,7 +53,11 @@ public class Player : MonoBehaviour
     private Transform backTransform;
     private Transform handTransform;
 
+    // Dig
+    public GameObject dirt;
 
+    // Input axis activate only once per press
+    private bool interactInUse = false;
 
     // Start is called before the first frame update
     void Start()
@@ -74,10 +78,10 @@ public class Player : MonoBehaviour
         PlayerMovement();
 
         // Swap Item
-        // an array might be best for this
         if (Input.GetKeyDown("0"))
         {
             UnequipItems();
+            equipped = 0;
 
             Debug.Log("Switched to 0");
         }
@@ -100,6 +104,8 @@ public class Player : MonoBehaviour
 
         metalList = GameObject.FindGameObjectsWithTag("Metal");
 
+        if (equipped == 1)
+        {
         for (int i = 0; i < metalList.Length; i++) {
             if (Vector3.Distance(transform.position, metalList[i].transform.position) < distanceToNearestMetal) {
                 distanceToNearestMetal = Vector3.Distance(transform.position, metalList[i].transform.position);
@@ -119,6 +125,12 @@ public class Player : MonoBehaviour
         }
         else
             metalBeep.pitch = 0;
+        
+        }
+        else
+        {
+            metalBeep.pitch = 0;
+        }
 
         distanceToNearestMetal = float.MaxValue;
     }
@@ -144,7 +156,7 @@ public class Player : MonoBehaviour
         camTransform.rotation = cameraRotation;
 
         //Interact
-        if (Input.GetAxis("Interact") > 0)
+        if (Input.GetAxis("Interact") > 0 && interactInUse != true)
         {
             // create a Ray
             RaycastHit hit;
@@ -160,6 +172,21 @@ public class Player : MonoBehaviour
                     gameManager.AddItem(hit.collider.GetComponent<Item>().itemID);
                     Destroy(hit.collider.gameObject);
                 }
+                else if (equipped == 2)
+                {
+                    if (hit.collider.tag == "Dirt")
+                    {
+                        hit.collider.gameObject.GetComponent<DigSpot>().Dug();
+                    }
+                    else if (hit.collider.tag == "Ground")
+                    {
+                        Vector3 spawnLocation = hit.point;
+                        spawnLocation = new Vector3(spawnLocation.x, spawnLocation.y - 0.5f, spawnLocation.z);
+                        Debug.Log("SpawnLocation: " + spawnLocation);
+                        //spawn dirt that lasts 5 seconds
+                        Instantiate(dirt, spawnLocation, Quaternion.identity);
+                    }
+                }
                 //Debug.Log("Did Hit");
             }
             else
@@ -167,6 +194,11 @@ public class Player : MonoBehaviour
                 //Debug.DrawRay(camTransform.position, camTransform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 //Debug.Log("Did not Hit");
             }
+            interactInUse = true;
+        }
+        else if (Input.GetAxis("Interact") == 0)
+        {
+            interactInUse = false;
         }
     }
 

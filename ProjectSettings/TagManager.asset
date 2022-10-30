@@ -9,6 +9,8 @@ TagManager:
   - GameManager
   - InventoryUI
   - TerrainHitbox
+  - Dirt
+  - Ground
   layers:
   - Default
   - TransparentFX
