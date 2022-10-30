@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     // Pick things up
     private float pickupRange = 2f;
 
+    // Metal Detector Sounds
     public float distanceToNearestMetal = float.MaxValue;
     public float baseDistance;                      // The distance where the pitch of the metal detector is 1
     // Note: maybe change it later to only being a list of objects that collide with a larger hit box around the player
@@ -40,18 +41,77 @@ public class Player : MonoBehaviour
     public float minBeepPitch;
     public float maxBeepPitch;
 
+    // Swap inventory items
+    public GameObject metalDetector;
+    public GameObject shovel;
+    // A number to remember what is equipped
+    private int equipped = 0;
+
+    private Transform backTransform;
+    private Transform handTransform;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody>();
         cam = gameObject.GetComponentInChildren<Camera>();
         camTransform = transform;
+        handTransform = gameObject.transform.GetChild(1);
+        backTransform = gameObject.transform.GetChild(2);
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayerMovement();
+
+        // Swap Item
+        // an array might be best for this
+        if (Input.GetKeyDown("0"))
+        {
+            if (equipped != 0)
+            {
+                if (equipped == 1)
+                {
+                    metalDetector.transform.position = backTransform.position;
+                }
+                else if (equipped == 2)
+                {
+                    shovel.transform.position = backTransform.position;
+                }
+            }
+            Debug.Log("Switched to 0");
+        }
+        if (Input.GetKeyDown("1"))
+        {
+            if (equipped != 0)
+            {
+                if (equipped == 2)
+                {
+                    shovel.transform.position = backTransform.position;
+                }
+                //otherwise do nothing
+            }
+            equipped = 1;
+            metalDetector.transform.position = handTransform.position;
+            Debug.Log("Switched to 1");
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            if (equipped != 0)
+            {
+                if (equipped == 1)
+                {
+                    metalDetector.transform.position = backTransform.position;
+                }
+            }
+
+            equipped = 2;
+            shovel.transform.position = handTransform.position;
+            Debug.Log("Switched to 2");
+        }
 
         metalList = GameObject.FindGameObjectsWithTag("Metal");
 
@@ -65,11 +125,11 @@ public class Player : MonoBehaviour
             metalBeep.pitch = baseDistance / distanceToNearestMetal;
             if (metalBeep.pitch < minBeepPitch) {
                 metalBeep.pitch = minBeepPitch;
-                Debug.Log("lowest pitch");
+                //Debug.Log("lowest pitch");
             }
             if (metalBeep.pitch > maxBeepPitch) {
                 metalBeep.pitch = maxBeepPitch;
-                Debug.Log("highest pitch");
+                //Debug.Log("highest pitch");
             }
         }
         else
