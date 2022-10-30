@@ -74,10 +74,10 @@ public class Player : MonoBehaviour
         PlayerMovement();
 
         // Swap Item
-        // an array might be best for this
         if (Input.GetKeyDown("0"))
         {
             UnequipItems();
+            equipped = 0;
 
             Debug.Log("Switched to 0");
         }
@@ -100,6 +100,8 @@ public class Player : MonoBehaviour
 
         metalList = GameObject.FindGameObjectsWithTag("Metal");
 
+        if (equipped == 1)
+        {
         for (int i = 0; i < metalList.Length; i++) {
             if (Vector3.Distance(transform.position, metalList[i].transform.position) < distanceToNearestMetal) {
                 distanceToNearestMetal = Vector3.Distance(transform.position, metalList[i].transform.position);
@@ -119,6 +121,12 @@ public class Player : MonoBehaviour
         }
         else
             metalBeep.pitch = 0;
+        
+        }
+        else
+        {
+            metalBeep.pitch = 0;
+        }
 
         distanceToNearestMetal = float.MaxValue;
     }
