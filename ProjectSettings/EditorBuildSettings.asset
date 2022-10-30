@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Nick_Testing.unity
     guid: b6ec635563aaa67469f26869b27ee569
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: e1d85d42166ba504b9b6b38d43357814
   m_configObjects: {}

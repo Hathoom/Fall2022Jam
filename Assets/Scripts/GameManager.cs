@@ -8,13 +8,14 @@ public class GameManager : MonoBehaviour
 {
     public List<int> inventoryList;
     public GameObject inventoryUI;
+    private int numofInventoryItems;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        numofInventoryItems = 0;
     }
 
     // Update is called once per frame
@@ -30,6 +31,11 @@ public class GameManager : MonoBehaviour
 
     public void AddItem(int itemID) {
         inventoryList.Add(itemID);
+        numofInventoryItems++;
+        if (numofInventoryItems > 5)
+        {
+            LoadCredits();
+        }
     }
 
     public void InventoryOpen() {
@@ -47,7 +53,7 @@ public class GameManager : MonoBehaviour
     // Main Menu stuff
     public void LoadMainScene()
     {
-        SceneManager.LoadScene("Nick_Testing");
+        SceneManager.LoadScene("MainScene");
     }
     public void LoadCredits()
     {
