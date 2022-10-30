@@ -42,6 +42,9 @@ public class Player : MonoBehaviour
     public float maxBeepPitch;
 
     // Swap inventory items
+
+    // Only 2 equippables right now so that value will be 2
+    public GameObject[] equippables = new GameObject[2];
     public GameObject metalDetector;
     public GameObject shovel;
     // A number to remember what is equipped
@@ -60,6 +63,9 @@ public class Player : MonoBehaviour
         camTransform = transform;
         handTransform = gameObject.transform.GetChild(1);
         backTransform = gameObject.transform.GetChild(2);
+
+        equippables[0] = metalDetector;
+        equippables[1] = shovel;
     }
 
     // Update is called once per frame
@@ -71,45 +77,24 @@ public class Player : MonoBehaviour
         // an array might be best for this
         if (Input.GetKeyDown("0"))
         {
-            if (equipped != 0)
-            {
-                if (equipped == 1)
-                {
-                    metalDetector.transform.position = backTransform.position;
-                }
-                else if (equipped == 2)
-                {
-                    shovel.transform.position = backTransform.position;
-                }
-            }
+            UnequipItems();
+
             Debug.Log("Switched to 0");
         }
         if (Input.GetKeyDown("1"))
         {
-            if (equipped != 0)
-            {
-                if (equipped == 2)
-                {
-                    shovel.transform.position = backTransform.position;
-                }
-                //otherwise do nothing
-            }
+            UnequipItems();
             equipped = 1;
-            metalDetector.transform.position = handTransform.position;
+            EquipItem(equipped);
             Debug.Log("Switched to 1");
         }
         if (Input.GetKeyDown("2"))
         {
-            if (equipped != 0)
-            {
-                if (equipped == 1)
-                {
-                    metalDetector.transform.position = backTransform.position;
-                }
-            }
+            UnequipItems();
 
             equipped = 2;
-            shovel.transform.position = handTransform.position;
+
+            EquipItem(equipped);
             Debug.Log("Switched to 2");
         }
 
@@ -183,5 +168,22 @@ public class Player : MonoBehaviour
                 //Debug.Log("Did not Hit");
             }
         }
+    }
+
+    void UnequipItems() {
+        // if something is equipped: unequip it
+        if (equipped != 0)
+        {
+            equippables[equipped - 1].transform.position = backTransform.position;
+        }
+    }
+
+    void EquipItem(int num) {
+        if (num == 0)
+        {
+            //Do Nothing
+        }
+        
+        equippables[num - 1].transform.position = handTransform.position;
     }
 }
