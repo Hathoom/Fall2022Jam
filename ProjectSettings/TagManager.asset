@@ -8,6 +8,8 @@ TagManager:
   - Pickupable
   - GameManager
   - InventoryUI
+  - Dirt
+  - Ground
   layers:
   - Default
   - TransparentFX
