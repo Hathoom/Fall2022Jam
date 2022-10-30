@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
-    public int[] inventoryList;
+    public List<int> inventoryList;
     public GameObject inventoryUI;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +28,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AddItem(int itemID) {
+        inventoryList.Add(itemID);
+    }
+
     public void InventoryOpen() {
         Time.timeScale = 0f;
         Instantiate(inventoryUI);
@@ -33,5 +41,24 @@ public class GameManager : MonoBehaviour
         GameObject inventoryTemp = GameObject.FindGameObjectsWithTag("InventoryUI")[0];
         Destroy(inventoryTemp);
         Time.timeScale = 1f;
+    }
+
+
+    // Main Menu stuff
+    public void LoadMainScene()
+    {
+        SceneManager.LoadScene("Nick_Testing");
+    }
+    public void LoadCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+    public void LoadControls()
+    {
+        SceneManager.LoadScene("Controls");
+    }
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 }

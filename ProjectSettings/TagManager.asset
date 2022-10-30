@@ -5,8 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Metal
+  - Pickupable
   - GameManager
   - InventoryUI
+  - TerrainHitbox
+  - Dirt
+  - Ground
   layers:
   - Default
   - TransparentFX
