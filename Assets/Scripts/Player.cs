@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
 
     // Dig
     public GameObject dirt;
+    public GameObject[] dirtList;
 
     // Input axis activate only once per press
     private bool interactInUse = false;
@@ -103,30 +104,58 @@ public class Player : MonoBehaviour
         }
 
         metalList = GameObject.FindGameObjectsWithTag("Metal");
+        dirtList = GameObject.FindGameObjectsWithTag("Dirt");
 
         if (equipped == 1)
         {
-        for (int i = 0; i < metalList.Length; i++) {
-            if (Vector3.Distance(transform.position, metalList[i].transform.position) < distanceToNearestMetal) {
-                distanceToNearestMetal = Vector3.Distance(transform.position, metalList[i].transform.position);
-            }
-        }
+            if (metalList.Length > 0)
+            {
+                for (int i = 0; i < metalList.Length; i++) {
+                    if (Vector3.Distance(transform.position, metalList[i].transform.position) < distanceToNearestMetal) {
+                        distanceToNearestMetal = Vector3.Distance(transform.position, metalList[i].transform.position);
+                    }
+                }
 
-        if (distanceToNearestMetal != 0) {
-            metalBeep.pitch = baseDistance / distanceToNearestMetal;
-            if (metalBeep.pitch < minBeepPitch) {
-                metalBeep.pitch = minBeepPitch;
-                //Debug.Log("lowest pitch");
+                if (distanceToNearestMetal != 0) {
+                    metalBeep.pitch = baseDistance / distanceToNearestMetal;
+                    if (metalBeep.pitch < minBeepPitch) {
+                        metalBeep.pitch = minBeepPitch;
+                        //Debug.Log("lowest pitch");
+                    }
+                    if (metalBeep.pitch > maxBeepPitch) {
+                        metalBeep.pitch = maxBeepPitch;
+                        //Debug.Log("highest pitch");
+                    }
+                }
+                else
+                {
+                    metalBeep.pitch = 0;
+                }
             }
-            if (metalBeep.pitch > maxBeepPitch) {
-                metalBeep.pitch = maxBeepPitch;
-                //Debug.Log("highest pitch");
+            else if (dirtList.Length > 0)
+            {
+                for (int i = 0; i < dirtList.Length; i++) {
+                    if (Vector3.Distance(transform.position, dirtList[i].transform.position) < distanceToNearestMetal) {
+                        distanceToNearestMetal = Vector3.Distance(transform.position, dirtList[i].transform.position);
+                    }
+                }
+                if (distanceToNearestMetal != 0) {
+                    metalBeep.pitch = baseDistance / distanceToNearestMetal;
+                    if (metalBeep.pitch < minBeepPitch) {
+                        metalBeep.pitch = minBeepPitch;
+                        //Debug.Log("lowest pitch");
+                    }
+                    if (metalBeep.pitch > maxBeepPitch) {
+                        metalBeep.pitch = maxBeepPitch;
+                        //Debug.Log("highest pitch");
+                    }
+                }
+                else
+                {
+                    metalBeep.pitch = 0;
+                }
             }
-        }
-        else
-            metalBeep.pitch = 0;
-        
-        }
+        }  
         else
         {
             metalBeep.pitch = 0;
