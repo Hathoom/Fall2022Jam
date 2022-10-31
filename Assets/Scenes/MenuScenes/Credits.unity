@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -590,8 +590,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220.3, y: 97.3}
-  m_SizeDelta: {x: 440.6, y: 194.6}
+  m_AnchoredPosition: {x: -188.8852, y: 111.17}
+  m_SizeDelta: {x: 377.7705, y: 166.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1296712326
 MonoBehaviour:
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Arthur Tempe: \nNicholas Anderson:    "
+  m_text: "Arthur Timpe: \nNicholas Anderson:    "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -725,8 +725,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220.29999, y: 97.30002}
-  m_SizeDelta: {x: 440.6, y: 194.6}
+  m_AnchoredPosition: {x: 185.7438, y: 112.56}
+  m_SizeDelta: {x: 371.4875, y: 164.08}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1608247822
 MonoBehaviour:
