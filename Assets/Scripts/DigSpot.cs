@@ -23,8 +23,8 @@ public class DigSpot : MonoBehaviour
     public void Dug()
     {
         Vector3 spawnLocation = gameObject.transform.position;
-        spawnLocation = new Vector3(spawnLocation.x, spawnLocation.y -0.5f, spawnLocation.z);
-        
+        spawnLocation = new Vector3(spawnLocation.x, spawnLocation.y -0.4f, spawnLocation.z);
+
         Instantiate(dirt, spawnLocation, Quaternion.identity);
         Destroy(gameObject);
     }
