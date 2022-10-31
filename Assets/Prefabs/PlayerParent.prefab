@@ -181,6 +181,7 @@ MonoBehaviour:
   shovel: {fileID: 0}
   dirt: {fileID: 0}
   dirtList: []
+  itemGetAnimation: {fileID: 3010688811669121043, guid: d921b5dedda74d34ca443f5545cbb50a, type: 3}
 --- !u!82 &1596942063362050278
 AudioSource:
   m_ObjectHideFlags: 0

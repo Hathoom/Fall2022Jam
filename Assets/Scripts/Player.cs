@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -59,6 +60,8 @@ public class Player : MonoBehaviour
 
     // Input axis activate only once per press
     private bool interactInUse = false;
+
+    public GameObject itemGetAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -199,6 +202,8 @@ public class Player : MonoBehaviour
                 if (hit.collider.tag == "Pickupable" || hit.collider.tag == "Metal")
                 {
                     gameManager.AddItem(hit.collider.GetComponent<Item>().itemID);
+                    GameObject itemGetTemp = Instantiate(itemGetAnimation);
+                    itemGetTemp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "You found:\n" + Inventory.GetName(hit.collider.GetComponent<Item>().itemID);
                     Destroy(hit.collider.gameObject);
                 }
                 else if (equipped == 2)
