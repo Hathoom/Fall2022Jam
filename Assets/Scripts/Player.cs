@@ -63,6 +63,9 @@ public class Player : MonoBehaviour
 
     public GameObject itemGetAnimation;
 
+    public AudioSource itemSound;            // Sound for finding item
+    public AudioSource footsteps;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -172,6 +175,12 @@ public class Player : MonoBehaviour
         float x = Input.GetAxis("Horizontal") * moveSpeed;
         float z = Input.GetAxis("Vertical") * moveSpeed;
 
+        if ((x != 0f || z != 0f) && !footsteps.isPlaying) {
+            footsteps.Play();
+        } else if ((x == 0f && z == 0f) && footsteps.isPlaying) {
+            footsteps.Stop();
+        }
+
         //set the rigidbody's velocity
         Vector3 targetDirection = new Vector3(x, 0f, z);
         targetDirection = Camera.main.transform.TransformDirection(targetDirection);
@@ -205,6 +214,7 @@ public class Player : MonoBehaviour
                     GameObject itemGetTemp = Instantiate(itemGetAnimation);
                     itemGetTemp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "You found:\n" + Inventory.GetName(hit.collider.GetComponent<Item>().itemID);
                     Destroy(hit.collider.gameObject);
+                    itemSound.Play();
                 }
                 else if (equipped == 2)
                 {
